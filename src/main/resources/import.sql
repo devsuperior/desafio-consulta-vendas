@@ -12,10 +12,10 @@ INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (2,47,25,7318.0
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (4,72,60,15608.0,'2023-06-03');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (4,97,68,8901.0,'2023-06-03');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (5,68,26,13231.0,'2023-06-02');
-INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (1,73,53,19476.0,'2023-05-22');
-INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (4,28,23,20530.0,'2023-05-18');
+INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (1,73,53,19372.0,'2023-05-22');
+INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (4,28,23,21732.0,'2023-05-18');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (2,83,44,4864.0,'2023-05-13');
-INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (1,82,43,21753.0,'2023-05-06');
+INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (1,82,43,20343.0,'2023-05-06');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (2,43,26,7362.0,'2023-05-03');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (5,54,23,10549.0,'2023-04-28');
 INSERT INTO tb_sales(seller_id,visited,deals,amount,date) VALUES (3,125,84,13333.0,'2023-04-25');
