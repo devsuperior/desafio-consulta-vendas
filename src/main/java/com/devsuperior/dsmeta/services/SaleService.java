@@ -4,7 +4,9 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.devsuperior.dsmeta.dto.SaleReportDto;
+import com.devsuperior.dsmeta.dto.SummaryDTO;
 import com.devsuperior.dsmeta.entities.Sale;
 import com.devsuperior.dsmeta.repositories.SaleRepository;
 
@@ -40,4 +43,14 @@ public class SaleService {
         return result.map(x -> new SaleReportDto(x));
      
     }
+	
+	public List<SummaryDTO> getSummary(String start, String end) {
+		
+		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        LocalDate endDate = "".equals(end) ? today : LocalDate.parse(end, dtf);
+        LocalDate startDate = "".equals(start) ? endDate.minusYears(1L) : LocalDate.parse(start, dtf);
+		
+        return repository.searchSummary(startDate, endDate);
+		
+	}
 }
