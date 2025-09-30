@@ -34,13 +34,13 @@ public class SaleService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		LocalDate minDateFormatted = (minDate == null || minDate.isBlank())
-				? LocalDate.now().minusYears(1L)
+				? LocalDate.now().minusYears(1)
 				:LocalDate.parse(minDate, formatter);
 
 
 		LocalDate maxDateFormatted = (maxDate == null || maxDate.isBlank())
 				? LocalDate.now()
-				:LocalDate.parse(maxDate, formatter);
+				:LocalDate.parse(maxDate, formatter).plusDays(1);
 
 
 		Page<SaleMinProjection> result = repository.searchSale(minDateFormatted, maxDateFormatted, sellerName, pageable);
@@ -51,7 +51,7 @@ public class SaleService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		LocalDate minDateFormatted = (minDate == null || minDate.isBlank())
-				? LocalDate.now()
+				? LocalDate.now().minusYears(1)
 				:LocalDate.parse(minDate, formatter);
 
 
@@ -61,10 +61,6 @@ public class SaleService {
 
 		Page<SellerMinProjection> result = repository.searchBySeller(minDateFormatted, maxDateFormatted, pageable);
 		return result.map(SellerMinDTO::new);
-	}
-
-	private SellerMinDTO toDTO(SellerMinProjection projection){
-		return new SellerMinDTO(projection.getSellerName(), projection.getTotal());
 	}
 
 	public SaleMinDTO findById(Long id) {
