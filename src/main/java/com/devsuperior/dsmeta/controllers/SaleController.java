@@ -31,9 +31,9 @@ public class SaleController {
 
 	@GetMapping("/report")
 	public ResponseEntity<Page<SaleMinDTO>> getReport(
-			@RequestParam(required = false, value = "minDate",defaultValue = "") String minDate,
-			@RequestParam(required = false, value = "maxDate", defaultValue = "") String maxDate,
-			@RequestParam(required = false, value = "name", defaultValue = "") String name,
+			@RequestParam(value = "minDate",defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size
 	){
