@@ -1,14 +1,21 @@
 package com.devsuperior.dsmeta.controllers;
 
+import com.devsuperior.dsmeta.dto.SellerMinDTO;
+import com.devsuperior.dsmeta.projections.SellerMinProjection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.devsuperior.dsmeta.dto.SaleMinDTO;
 import com.devsuperior.dsmeta.services.SaleService;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sales")
@@ -17,21 +24,31 @@ public class SaleController {
 	@Autowired
 	private SaleService service;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<SaleMinDTO> findById(@PathVariable Long id) {
-		SaleMinDTO dto = service.findById(id);
-		return ResponseEntity.ok(dto);
+		return ResponseEntity.ok(service.findById(id));
 	}
 
-	@GetMapping(value = "/report")
-	public ResponseEntity<?> getReport() {
-		// TODO
-		return null;
+	@GetMapping("/report")
+	public ResponseEntity<Page<SaleMinDTO>> getReport(
+			@RequestParam(required = false, value = "minDate",defaultValue = "") String minDate,
+			@RequestParam(required = false, value = "maxDate", defaultValue = "") String maxDate,
+			@RequestParam(required = false, value = "name", defaultValue = "") String name,
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size
+	){
+		Pageable pageable = PageRequest.of(page,size);
+		Page<SaleMinDTO> report = service.getReport(minDate, maxDate, name, pageable);
+		return ResponseEntity.ok(report);
 	}
 
-	@GetMapping(value = "/summary")
-	public ResponseEntity<?> getSummary() {
-		// TODO
-		return null;
+	@GetMapping("/summary")
+	public ResponseEntity<Page<SellerMinDTO>> getSummary(
+			@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+			Pageable pageable
+	){
+		Page<SellerMinDTO> list = service.searchBySeller(minDate, maxDate, pageable);
+		return ResponseEntity.ok(list);
 	}
 }
