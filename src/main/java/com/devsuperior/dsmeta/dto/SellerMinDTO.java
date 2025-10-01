@@ -1,5 +1,6 @@
 package com.devsuperior.dsmeta.dto;
 
+import com.devsuperior.dsmeta.entities.Seller;
 import com.devsuperior.dsmeta.projections.SellerMinProjection;
 
 public class SellerMinDTO {
