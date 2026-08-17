@@ -1,5 +1,7 @@
 package com.devsuperior.dsmeta.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
